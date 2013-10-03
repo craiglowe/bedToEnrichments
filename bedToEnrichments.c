@@ -715,7 +715,7 @@ struct slNameDouble *hypergeometricNullModelStyle(struct bedLong *elementsList, 
 		whiteBallsPicked = bedLongIntersectThreeGoCount(largeSetList, NULL, genesList, term->name, elementsList, NULL);
 		if(paramsHash != NULL){hashAdd(paramsHash,term->name,hyperParamsToTabString(whiteBallsPicked,totalPicks,whiteBalls,totalBalls));}
 		//pValue = hyperGeoPValue(whiteBallsPicked, totalPicks, whiteBalls, totalBalls);
-		pValue = gsl_cdf_hypergeometric_Q((unsigned int)whiteBallsPicked, (unsigned int)whiteBalls, (unsigned int)totalBalls-whiteBalls, (unsigned int)totalPicks);
+		pValue = gsl_cdf_hypergeometric_Q((unsigned int)whiteBallsPicked-1, (unsigned int)whiteBalls, (unsigned int)totalBalls-whiteBalls, (unsigned int)totalPicks);
 		struct slNameDouble *temp = createSlNameDouble(term->name,pValue);
 		slAddHead(&termAndPvalue,temp);
 	}
@@ -743,7 +743,7 @@ struct slNameDouble *hypergeometricStyle(struct bedLong *elementsList, struct be
 		whiteBallsPicked = bedLongIntersectGoCount(genesList, term->name, elementsList, NULL, retHitsHash, NULL);
 		if(paramsHash != NULL){hashAdd(paramsHash,term->name,hyperParamsToTabString(whiteBallsPicked,totalPicks,whiteBalls,totalBalls));}
 		//pValue = hyperGeoPValue(whiteBallsPicked, totalPicks, whiteBalls, totalBalls);
-		pValue = gsl_cdf_hypergeometric_Q((unsigned int)whiteBallsPicked, (unsigned int)whiteBalls, (unsigned int)totalBalls-whiteBalls, (unsigned int)totalPicks);
+		pValue = gsl_cdf_hypergeometric_Q((unsigned int)whiteBallsPicked-1, (unsigned int)whiteBalls, (unsigned int)totalBalls-whiteBalls, (unsigned int)totalPicks);
 		struct slNameDouble *temp = createSlNameDouble(term->name,pValue);
 		slAddHead(&termAndPvalue,temp);
 	}
@@ -774,7 +774,7 @@ struct slNameDouble *binomialStyle(struct bedLong *elementsList, struct bedLong 
 		prob = ((double)whiteBalls)/((double)totalBalls);
 		if(paramsHash != NULL){hashAdd(paramsHash,term->name,binomParamsToTabString(prob,whiteBallsPicked,totalPicks));}
 		//pValue = binomPValue(whiteBallsPicked,totalPicks,prob);
-		pValue = gsl_cdf_binomial_P((unsigned int)whiteBallsPicked, prob, (unsigned int)totalPicks);
+		pValue = gsl_cdf_binomial_Q((unsigned int)whiteBallsPicked-1, prob, (unsigned int)totalPicks);
 		struct slNameDouble *temp = createSlNameDouble(term->name,pValue);
 		slAddHead(&termAndPvalue,temp);
 	}
