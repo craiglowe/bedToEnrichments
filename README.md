@@ -61,3 +61,19 @@ make
 <li> Running bedToEnrichments with no parameters should give a brief help message.
 </ol>
 </ol>
+
+References
+==========
+
+This code has been used and described in:
+
+<ol>
+<li> Lowe CB, Kellis M, Siepel A, Raney BJ, Clamp M, Salama SR, Kingsley DM, Lindblad-Toh K, Haussler D.<br />
+Science. 2011 Aug 19;333(6045):1019-24.<br />
+PMID: 21852499<br />
+<li> Thousands of human mobile element fragments undergo strong purifying selection near developmental genes.<br />
+Lowe CB, Bejerano G, Haussler D.<br />
+Proc Natl Acad Sci U S A. 2007 May 8;104(19):8005-10.<br />
+PMID: 17463089<br />
+</ol>
+
