@@ -18,7 +18,18 @@ L += /home/lowec/src/gsl/gsl-1.16_install/lib/libgsl.a /home/lowec/src/gsl/gsl-1
 
 ##########
 #
-# If you compile your kent source with sam/bam and tabix support
+# If you compiled your kent source with SSL support
+# then you will need to edit the below lines as well
+#
+ifeq (${USE_SSL},1)
+	L+=-lssl -lcrypto
+	HG_DEFS+=-DUSE_SSL
+endif
+##########
+
+##########
+#
+# If you compiled your kent source with sam/bam and tabix support
 # then you will need to edit the below lines as well.
 # If none of that sounded familiar to you, then you probably don't
 # need to edit this.

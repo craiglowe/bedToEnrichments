@@ -69,10 +69,11 @@ This code has been used and described in:
 
 <ol>
 <li> Lowe CB, Kellis M, Siepel A, Raney BJ, Clamp M, Salama SR, Kingsley DM, Lindblad-Toh K, Haussler D.<br />
+Three periods of regulatory innovation during vertebrate evolution.<br />
 Science. 2011 Aug 19;333(6045):1019-24.<br />
 PMID: 21852499<br />
-<li> Thousands of human mobile element fragments undergo strong purifying selection near developmental genes.<br />
-Lowe CB, Bejerano G, Haussler D.<br />
+<li> Lowe CB, Bejerano G, Haussler D.<br />
+Thousands of human mobile element fragments undergo strong purifying selection near developmental genes.<br />
 Proc Natl Acad Sci U S A. 2007 May 8;104(19):8005-10.<br />
 PMID: 17463089<br />
 </ol>

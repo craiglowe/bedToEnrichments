@@ -81,10 +81,11 @@ errAbort(
 	"references:\n"
 	"  This code has been used and described in:\n"
 	"    Lowe CB, Kellis M, Siepel A, Raney BJ, Clamp M, Salama SR, Kingsley DM, Lindblad-Toh K, Haussler D.\n"
+	"    Three periods of Regulatory Innovation During Vertebrate Evolution\n"
 	"    Science. 2011 Aug 19;333(6045):1019-24.\n"
 	"    PMID: 21852499\n"
-	"    Thousands of human mobile element fragments undergo strong purifying selection near developmental genes.\n"
 	"    Lowe CB, Bejerano G, Haussler D.\n"
+	"    Thousands of human mobile element fragments undergo strong purifying selection near developmental genes.\n"
 	"    Proc Natl Acad Sci U S A. 2007 May 8;104(19):8005-10.\n"
 	"    PMID: 17463089\n"
 	);
