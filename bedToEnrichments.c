@@ -1,6 +1,7 @@
 /*
 
 bedToEnrichments.c
+Written by Craig Lowe
 
 */
 
