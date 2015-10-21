@@ -1,6 +1,6 @@
 /*
 
-bedToGoStats.c
+bedToEnrichments.c
 
 */
 
@@ -58,9 +58,9 @@ void usage()
 /* Explain usage and exit. */
 {
 errAbort(
-	"bedToGoStats - do enrichment tests when given a .bed file.\n"
+	"bedToEnrichments - do enrichment tests when given a .bed file.\n"
 	"usage:\n"
-	"   bedToGoStats elements.bed genes.bedLong noGaps.bed\n"
+	"   bedToEnrichments elements.bed genes.bedLong noGaps.bed\n"
 	"options:\n"
 	"   -binom                FALSE    use the binomial method\n"
 	"   -hypergeo             FALSE    use the hypergeometric method\n"
@@ -84,6 +84,7 @@ errAbort(
 	"    Three periods of Regulatory Innovation During Vertebrate Evolution\n"
 	"    Science. 2011 Aug 19;333(6045):1019-24.\n"
 	"    PMID: 21852499\n"
+	"     -and-\n"
 	"    Lowe CB, Bejerano G, Haussler D.\n"
 	"    Thousands of human mobile element fragments undergo strong purifying selection near developmental genes.\n"
 	"    Proc Natl Acad Sci U S A. 2007 May 8;104(19):8005-10.\n"
@@ -716,7 +717,8 @@ struct slNameDouble *hypergeometricNullModelStyle(struct bedLong *elementsList, 
 		whiteBallsPicked = bedLongIntersectThreeGoCount(largeSetList, NULL, genesList, term->name, elementsList, NULL);
 		if(paramsHash != NULL){hashAdd(paramsHash,term->name,hyperParamsToTabString(whiteBallsPicked,totalPicks,whiteBalls,totalBalls));}
 		//pValue = hyperGeoPValue(whiteBallsPicked, totalPicks, whiteBalls, totalBalls);
-		pValue = gsl_cdf_hypergeometric_Q((unsigned int)whiteBallsPicked-1, (unsigned int)whiteBalls, (unsigned int)totalBalls-whiteBalls, (unsigned int)totalPicks);
+		if(whiteBallsPicked == 0){pValue = 1;}
+		else{pValue = gsl_cdf_hypergeometric_Q((unsigned int)whiteBallsPicked-1, (unsigned int)whiteBalls, (unsigned int)totalBalls-whiteBalls, (unsigned int)totalPicks);}
 		struct slNameDouble *temp = createSlNameDouble(term->name,pValue);
 		slAddHead(&termAndPvalue,temp);
 	}
@@ -744,7 +746,8 @@ struct slNameDouble *hypergeometricStyle(struct bedLong *elementsList, struct be
 		whiteBallsPicked = bedLongIntersectGoCount(genesList, term->name, elementsList, NULL, retHitsHash, NULL);
 		if(paramsHash != NULL){hashAdd(paramsHash,term->name,hyperParamsToTabString(whiteBallsPicked,totalPicks,whiteBalls,totalBalls));}
 		//pValue = hyperGeoPValue(whiteBallsPicked, totalPicks, whiteBalls, totalBalls);
-		pValue = gsl_cdf_hypergeometric_Q((unsigned int)whiteBallsPicked-1, (unsigned int)whiteBalls, (unsigned int)totalBalls-whiteBalls, (unsigned int)totalPicks);
+		if(whiteBallsPicked == 0){pValue = 1;}
+		else{pValue = gsl_cdf_hypergeometric_Q((unsigned int)whiteBallsPicked-1, (unsigned int)whiteBalls, (unsigned int)totalBalls-whiteBalls, (unsigned int)totalPicks);}
 		struct slNameDouble *temp = createSlNameDouble(term->name,pValue);
 		slAddHead(&termAndPvalue,temp);
 	}
@@ -775,7 +778,8 @@ struct slNameDouble *binomialStyle(struct bedLong *elementsList, struct bedLong 
 		prob = ((double)whiteBalls)/((double)totalBalls);
 		if(paramsHash != NULL){hashAdd(paramsHash,term->name,binomParamsToTabString(prob,whiteBallsPicked,totalPicks));}
 		//pValue = binomPValue(whiteBallsPicked,totalPicks,prob);
-		pValue = gsl_cdf_binomial_Q((unsigned int)whiteBallsPicked-1, prob, (unsigned int)totalPicks);
+		if(whiteBallsPicked == 0){pValue = 1;}
+		else{pValue = gsl_cdf_binomial_Q((unsigned int)whiteBallsPicked-1, prob, (unsigned int)totalPicks);}
 		struct slNameDouble *temp = createSlNameDouble(term->name,pValue);
 		slAddHead(&termAndPvalue,temp);
 	}
